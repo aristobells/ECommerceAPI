@@ -41,11 +41,18 @@ class CreateProductSerializer(serializers.ModelSerializer):
 
     
 class ListProductSerializer(serializers.ModelSerializer):
-  images = ProductImageSerializer(many=True, required=False)
+  # images = ProductImageSerializer(many=True, required=False)
+  image_url = serializers.SerializerMethodField()
   category = serializers.StringRelatedField()
   class Meta:
     model = Product
-    fields = ["name","description",'price','quantity','image','images','category' ]
+    fields = ["name","description",'price','quantity','image_url','images','category' ]
+    
+  def get_image_url(self, obj):
+    if obj.image:
+        return obj.image.url
+    else:
+        return None
 
     
 class CartSerializer(serializers.ModelSerializer):
