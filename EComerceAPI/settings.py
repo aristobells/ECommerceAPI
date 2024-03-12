@@ -87,22 +87,22 @@ WSGI_APPLICATION = 'EComerceAPI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_Name'),
-        'USER': config('DB_User'),
-        'PASSWORD': config('DB_Password'),
-        'HOST': config('DB_Host'),
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': config('DB_Name'),
+#         'USER': config('DB_User'),
+#         'PASSWORD': config('DB_Password'),
+#         'HOST': config('DB_Host'),
+#         'PORT': '5432'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -179,9 +179,9 @@ cloudinary.config(
   api_secret = config('api_secret') 
 )
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'cloud_name',
-    'API_KEY': 'api_key',
-    'API_SECRET': 'api_secret',
+    'CLOUD_NAME': config('cloud_name'),
+    'API_KEY': config('api_key'),
+    'API_SECRET': config('api_secret'),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 django_heroku.settings(locals())
